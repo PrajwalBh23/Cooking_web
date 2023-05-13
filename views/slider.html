@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @media (min-width: 768px) {
+            .carousel-inner {
+                display: flex;
+            }
+
+            .carousel-item {
+                margin-right: 0;
+                flex: 0 0 33.333333%;
+                display: block;
+            }
+        }
+
+        .carousel-inner {
+            padding: 1em;
+        }
+
+        .card {
+            margin: 0 .5em;
+            box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+            border: none;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            background-color: #e1e1e1;
+            width: 6vh;
+            height: 6vh;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/img/hero.jpg" class="d-block w-100" alt="not getting">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/hero-image.jpg" class="d-block w-100" alt="not getting">
+            </div>
+            <div class="carousel-item">
+                <img src="/img/hero.jpg" class="d-block w-100" alt="not getting">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="card">
+        <img src="..." class="d-block w-100" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Card title 2</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <script>
+        var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+        var cardWidth = $(".carousel-item").width();
+        var scrollPosition = 0;
+        $(".carousel-control-next").on("click", function () {
+            if (scrollPosition < (carouselWidth - cardWidth * 4)) { //check if you can go any further
+                scrollPosition += cardWidth;  //update scroll position
+                $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 600); //scroll left
+            }
+        });
+        $(".carousel-control-prev").on("click", function () {
+            if (scrollPosition > 0) {
+                scrollPosition -= cardWidth;
+                $(".carousel-inner").animate(
+                    { scrollLeft: scrollPosition },
+                    600
+                );
+            }
+        });
+    </script>
+</body>
+
+</html>
